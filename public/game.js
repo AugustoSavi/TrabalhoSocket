@@ -28,16 +28,25 @@ export default function createGame() {
         const playerX = 'playerX' in command ? command.playerX : Math.floor(Math.random() * state.screen.width)
         const playerY = 'playerY' in command ? command.playerY : Math.floor(Math.random() * state.screen.height)
 
+        const speed = 0;
+        const angle = 0;
+        const moveAngle = 0;
         state.players[playerId] = {
             x: playerX,
-            y: playerY
+            y: playerY,
+            speed: speed,
+            angle: angle,
+            moveAngle: moveAngle
         }
 
         notifyAll({
             type: 'add-player',
             playerId: playerId,
             playerX: playerX,
-            playerY: playerY
+            playerY: playerY,
+            speed: speed,
+            angle: angle,
+            moveAngle: moveAngle
         })
     }
 
@@ -58,22 +67,26 @@ export default function createGame() {
         const acceptedMoves = {
             ArrowUp(player) {
                 if (player.y - 1 >= 0) {
-                    player.y = player.y - 3
+                    //player.y = player.y - 3
+                    player.speed = 1;
                 }
             },
             ArrowRight(player) {
                 if (player.x + 1 < state.screen.width) {
-                    player.x = player.x + 3;
+                    //player.x = player.x + 3;
+                    player.moveAngle = 1;
                 }
             },
             ArrowDown(player) {
                 if (player.y + 1 < state.screen.height) {
-                    player.y = player.y + 3
+                    //player.y = player.y + 3
+                    player.speed = -1;
                 }
             },
             ArrowLeft(player) {
                 if (player.x - 1 >= 0) {
-                    player.x = player.x - 3
+                    //player.x = player.x - 3
+                    player.moveAngle = -1;
                 }
             }
         }

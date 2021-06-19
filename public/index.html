@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Trabalho socketio</title>
+        <title>Trabalho socket</title>
 
         <style>
             #screen {
@@ -69,7 +69,7 @@
             })
 
             socket.on('move-player', (command) => {
-                console.log(`Receiving ${command.type} -> ${command.playerId}`)
+                console.log(`Receiving -> ${JSON.stringify(command)}`)
 
                 const playerId = socket.id
 
